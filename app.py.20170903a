@@ -1,0 +1,58 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import pymongo
+
+cnx = pymongo.MongoClient()
+db = cnx["selenium"]
+tbl = db["customers"]
+
+driver = webdriver.Firefox()
+driver.get("http://paginasblancas.pe/")
+driver.find_element_by_xpath("//a[@data-target='address']").click()
+driver.find_element_by_name("street").send_keys("carlos izaguirre")
+driver.find_element_by_name("streetNumber").send_keys("2")
+driver.find_element_by_id("aLocality").send_keys("los olivos\n")
+#driver.find_element_by_id("btnSrchAddress").click()
+#driver.find_element_by_xpath("//a[@data-target='address']") #name address phone ddni /(/*[@id]")
+#pag = driver.find_elements_by_xpath("//ul[@class='m-results-pagination']")
+lis = driver.find_elements_by_css_selector("ul.m-results-pagination li")
+qPages = len(lis)
+
+def q():
+    driver.close()
+
+def insertCustomer(c):
+    #tbl.insert_one({'name':c[0], 'address':c[2], 'city': c[4], 'phone': c[8], 'script': c})
+    tbl.insert_one({'name':c[0], 'address':c[1], 'city': c[2], 'phone': c[3], 'script': c[4]})
+
+def search():
+    items = driver.find_elements_by_css_selector("li.m-results-business")
+    for i in items:
+        scriptContent = i.find_element_by_tag_name("script").get_attribute("innerHTML")
+        #"""
+        s = i.find_element_by_tag_name("script")
+        nombre = i.find_element_by_css_selector("h3 a").text
+        direccion = i.find_element_by_xpath(".//span[@itemprop='streetAddress']").text
+        ciudad = i.find_element_by_xpath(".//span[@itemprop='addressLocality']").text
+        telefono = i.find_element_by_css_selector("div.m-button--results-business--see-phone").get_attribute("onclick")
+        #"""
+        i = scriptContent.index("[")+1
+        f = scriptContent.index("]")
+        data = scriptContent[i:f].replace("'","").split(",")
+        data = [nombre, direccion, ciudad, telefono, data]
+        #data = scriptContent[i:f].replace("'","").encode("iso8859-1","ignore").decode("iso8859-1").split(",")
+        #"""
+        #print("################")
+        #print("NOMBRE: ", nombre)
+        #print("DIRECCIÓN: ", direccion)
+        #print("DISTRITO: ", ciudad)
+        #print("TELÉFONO: ", telefono)
+        #print("SCRIPT: ", scriptContent)
+        #ss = driver.execute_script("return arguments[0].innerHTML;",s)
+        #"""
+        #search_button = self.driver.find_element(By.XPATH, './/*[@id="nav-search"]/form/div[2]/div/input').click()
+        insertCustomer(data)
+
+#script = "return $(\"td:contains('{}')\").length".format(text="Silver")
+#count = driver.execute_script(script)
+#count =  driver.find_elements_by_xpath("//td[text()='Silver']")
