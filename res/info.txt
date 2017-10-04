@@ -262,3 +262,9 @@ https://www.linkedin.com/pulse/aspnet-5-rc-1-update-offline-installer-ali-bahram
 https://www.linkedin.com/pulse/net-core-rc2-sdk-preview-1-offline-installer-ali-bahraminezhad
 https://stackoverflow.com/questions/34352059/how-can-i-download-the-offline-installer-for-asp-net-5
 #-------------------------------------------------- END   [dotnet mvc tooling] - (29-09-2017 - 9:42:13) }}
+#-------------------------------------------------- BEGIN [db comparision] - (04-10-2017 - 18:43:28) {{
+https://github.com/MDY-BPO
+https://db-engines.com/en/system/MongoDB%3BRethinkDB
+https://db-engines.com/en/ranking
+#-------------------------------------------------- END   [db comparision] - (04-10-2017 - 18:43:28) }}
+
