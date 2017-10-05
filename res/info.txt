@@ -285,4 +285,47 @@ So,
 when myuser1 logs in, he will be inside C:\Home\Path\myuser1
 and
 when myotheruser2 logs in, he will be inside C:\Other\Home\Path\myotheruser2
+-----------------------------------------------------
+
+
+ 403
+down vote
+accepted
+
+
+In ~/.ssh/config, add:
+
+host github.com
+ HostName github.com
+ IdentityFile ~/.ssh/id_rsa_github
+ User git
+
+Now you can do git clone git@github.com:username/repo.git.
+
+NOTE: Verify that the permissions on IdentityFile are 400.SSH will reject, in a not clearly explicit manner, SSH keys that are too readable. It will just look like a credential rejection. The solution, in this case, is:
+
+chmod 400 ~/.ssh/id_rsa_github
+----------------------------------------------------
+
+
+Environment variable GIT_SSH_COMMAND:
+
+From Git version 2.3.0, you can use the environment variable GIT_SSH_COMMAND like this:
+
+GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_example" git clone example
+
+Note that -i can sometimes be overridden by your config file, in which case, you should give SSH an empty config file, like this:
+
+GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_example -F /dev/null" git clone example
+
+Configuration core.sshCommand:
+
+From Git version 2.10.0, you can configure this per repo or globally, so you don't have to set the environment variable any more!
+
+git config core.sshCommand "ssh -i ~/.ssh/id_rsa_example -F /dev/null"
+git pull
+git push
+
+----------------------------------------------------
+https://superuser.com/questions/232373/how-to-tell-git-which-private-key-to-use
 #-------------------------------------------------- END   [for ssh] - (05-10-2017 - 11:09:43) }}
