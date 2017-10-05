@@ -330,4 +330,23 @@ git push
 https://superuser.com/questions/232373/how-to-tell-git-which-private-key-to-use
 ----------------------------------------------------
 prepare for pull IN github
+ready now!!!
 #-------------------------------------------------- END   [for ssh] - (05-10-2017 - 11:09:43) }}
+#-------------------------------------------------- BEGIN [true git ssh config] - (05-10-2017 - 13:26:37) {{
+In ~/.ssh/config, add:
+
+host github.com
+    HostName github.com
+    IdentityFile Z:/rsms/.ssh/id_rsa
+    User git
+
+Now you can do git clone git@github.com:daemondev/pyBOT.git.
+
+NOTE: Verify that the permissions on IdentityFile are 400.SSH will reject, in a not clearly explicit manner, SSH keys that are too readable. It will just look like a credential rejection. The solution, in this case, is:
+
+chmod 400 ~/.ssh/id_rsa_github
+---------------------------------------------------------------
+ENV VAR
+GIT_SSH_COMMAND="ssh -i Z:/rsms/.ssh/id_rsa -F /dev/null"
+git clone example
+#-------------------------------------------------- END   [true git ssh config] - (05-10-2017 - 13:26:37) }}
