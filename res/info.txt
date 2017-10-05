@@ -329,4 +329,5 @@ git push
 ----------------------------------------------------
 https://superuser.com/questions/232373/how-to-tell-git-which-private-key-to-use
 ----------------------------------------------------
+prepare for pull IN github
 #-------------------------------------------------- END   [for ssh] - (05-10-2017 - 11:09:43) }}
