@@ -268,3 +268,21 @@ https://db-engines.com/en/system/MongoDB%3BRethinkDB
 https://db-engines.com/en/ranking
 #-------------------------------------------------- END   [db comparision] - (04-10-2017 - 18:43:28) }}
 
+#-------------------------------------------------- BEGIN [for ssh] - (05-10-2017 - 11:09:43) {{
+
+I've just configurated in version 3.8
+
+cd c:\openssh\bin
+mkpasswd -l -u myuser1 -p /cygdrive\C\Home\Path >> ..\etc\passwd
+mkpasswd -l -u myotheruser2 -p /cygdrive\C\Other\Home\Path >> ..\etc\passwd
+
+But inside both directories (C:\Home\Path and C:\Other\Home\Path) it has to have the user folder:
+C:\Home\Path\myuser1
+and
+C:\Other\Home\Path\myotheruser2
+
+So,
+when myuser1 logs in, he will be inside C:\Home\Path\myuser1
+and
+when myotheruser2 logs in, he will be inside C:\Other\Home\Path\myotheruser2
+#-------------------------------------------------- END   [for ssh] - (05-10-2017 - 11:09:43) }}
