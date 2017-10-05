@@ -348,5 +348,4 @@ ENV VAR
 GIT_SSH_COMMAND="ssh -i Z:/rsms/.ssh/id_rsa -F /dev/null"
 git clone example
 #-------------------------------------------------- END   [true git ssh config] - (05-10-2017 - 13:26:37) }}
-prepare for pull IN github
-123... ready now!!!
+merged success
