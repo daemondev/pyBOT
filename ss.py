@@ -18,10 +18,10 @@ TIM\E322330
 booperaciones124*
 
 TIM\E330976
-Lct*53856421
+Lct*9497238703
 """
-#driver = webdriver.Ie(capabilities=caps) 
-driver = webdriver.Ie() 
+#driver = webdriver.Ie(capabilities=caps)
+driver = webdriver.Ie()
 driver.capabilities["se:ieOptions"]["nativeEvents"] = False
 driver.capabilities["se:ieOptions"]["requireWindowFocus"] = True
 #driver.set_window_rect(0,0,800,600)
@@ -62,7 +62,7 @@ def printTableRows(attribute, criteria, search = ''):
         print(cells)
         dict_value = {'0th': cells[0], '1st': cells[1], '2nd': cells[2], '3rd': cells[3]}
 
-		
+
 def Enable_Protected_Mode():
     # SECURITY ZONES ARE AS FOLLOWS:
     # 0 is the Local Machine zone

@@ -357,4 +357,13 @@ ENV VAR
 GIT_SSH_COMMAND="ssh -i Z:/rsms/.ssh/id_rsa -F /dev/null"
 git clone example
 #-------------------------------------------------- END   [true git ssh config] - (05-10-2017 - 13:26:37) }}
+#-------------------------------------------------- BEGIN [latest ssh config] - (05-10-2017 - 15:52:44) {{
+
+#!/bin/sh
+ssh -i /home/user/.ssh/jenkins -F /dev/null -p 22 $*
+
+Assuming the script is in /home/user/gssh.sh, you shall then:
+
+$ export GIT_SSH=/home/user/gssh.sh
+#-------------------------------------------------- END   [latest ssh config] - (05-10-2017 - 15:52:44) }}
 merged success
