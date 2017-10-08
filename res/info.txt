@@ -339,6 +339,15 @@ git push
 https://superuser.com/questions/232373/how-to-tell-git-which-private-key-to-use
 ----------------------------------------------------
 #-------------------------------------------------- END   [for ssh] - (05-10-2017 - 11:09:43) }}
+#-------------------------------------------------- BEGIN [when .gitignore fail] - (08-10-2017 - 18:22:30) {{
+git rm -r --cached .
+git add .
+git commit -m "fixed untracked files"
+----------------------------------------
+git rm -r --cached .
+git reset HEAD --hard
+git status
+#-------------------------------------------------- END   [when .gitignore fail] - (08-10-2017 - 18:22:30) }}
 #-------------------------------------------------- BEGIN [true git ssh config] - (05-10-2017 - 13:26:37) {{
 In ~/.ssh/config, add:
 
