@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="img">
-    <file>img/pyBOT.ico</file>
-    <file>img/pyBOT-splash.png</file>
-  </qresource>
-</RCC>

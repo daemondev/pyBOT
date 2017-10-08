@@ -1,4 +1,0 @@
-flask
-pymongo
-pyqt5
-pyqt5-tools

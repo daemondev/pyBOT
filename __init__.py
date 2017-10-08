@@ -1,8 +1,0 @@
-__description__ = "pyBOT - BOT Automator for WebScrapping"
-__license__ = "GPL"
-__uri__ = "http://daemondev.com"
-__url__ = "http://daemondev.com"
-__version__ = "0.0.1"
-__author__ = "Richar Santiago Muñico Samaniego"
-__email__ = "granlinux@gmail.com"
-__license__ = "MIT"
