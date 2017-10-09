@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, uic, QtWidgets
-from PyQt5.QtWidgets import QMessageBox, QSplashScreen, QProgressBar, QFileDialog, QAction, QInputDialog, QDesktopWidget, QSystemTrayIcon, QCompleter 
-from PyQt5.QtGui import QPixmap, QIcon 
+from PyQt5.QtWidgets import QMessageBox, QSplashScreen, QProgressBar, QFileDialog, QAction, QInputDialog, QDesktopWidget, QSystemTrayIcon, QCompleter
+from PyQt5.QtGui import QPixmap, QIcon
 import sys, time, datetime
 import threading
 import psutil
@@ -171,24 +171,27 @@ class pyBOT (QtWidgets.QMainWindow, form):
 
         self.pbCache.setValue(0)
         self.pbCache.setAlignment(QtCore.Qt.AlignCenter)
-        
+
         self.completer = QCompleter()
         self.txtCommand.setCompleter(self.completer)
         self.model = QtCore.QStringListModel()
         self.completer.setModel(self.model)
         self.model.setStringList(['go', 'find', 'start', 'exit'])
-        self.txtCommand.hide()
+        #self.txtCommand.hide()
+        self.cboCommand.hide()
+        """### ComboBox Mode
         self.cboCommand.setEditable(True)
-        self.cboCommand.setStyleSheet ("QComboBox::drop-down {border-width: 0px;} QComboBox::down-arrow {image: url(noimg); border-width: 0px;}");
-        #self.cboCommand.keyPressEvent(self._key_press)   
-        
+        self.cboCommand.setStyleSheet ("QComboBox::drop-down {border-width: 0px;} QComboBox::down-arrow {image: url(noimg); border-width: 0px;}")
+        self.cboCommand.hide() #"""
+        #self.cboCommand.keyPressEvent(self._key_press)
+
 
         """
         self.oldPos = self.pos()
         self.mwidget = QtWidgets.QMainWindow(self)
         self.center()
-    
-    
+
+
 
     def center(self):
         qr = self.frameGeometry()
@@ -232,9 +235,9 @@ class pyBOT (QtWidgets.QMainWindow, form):
         #self.tabTASKS.setStyleSheet("padding-bottom:50px; background-color:red;")
         #self.debugInit()
 
-    
+
     #"""
-        
+
     def mkeyPressEvent(self, key, count=1):
         # FIXME:qtwebengine Abort scrolling if the minimum/maximum was reached.
         print("RUN")
@@ -244,7 +247,7 @@ class pyBOT (QtWidgets.QMainWindow, form):
             release_evt = QtGui.QKeyEvent(QtCore.QEvent.KeyRelease, key, QtCore.Qt.NoModifier,0, 0, 0)
             self._tab.send_event(press_evt)
             self._tab.send_event(release_evt) #"""
-    
+
     def closeEvent(self, event):
         if not debug:
             reply = QMessageBox.question(self, 'Message', "Are you sure to quit?", QMessageBox.Yes |
@@ -691,22 +694,22 @@ class pyBOT (QtWidgets.QMainWindow, form):
         while myFUnc():
             print("running")
 
-    def setIDSInCache(self, data):        
-        #http://infohost.nmt.edu/~shipman/soft/pylxml/web/Element-getchildren.html        
+    def setIDSInCache(self, data):
+        #http://infohost.nmt.edu/~shipman/soft/pylxml/web/Element-getchildren.html
         #doc.xpath("//div[@class='name']/parent::*")
         import os
-        while 1:            
+        while 1:
             self.setTime()
             while self.pendingProcess:
                 self.pendingProcess = False
                 try:
-                    print("init cache")                    
+                    print("init cache")
 
-                    rootPage = lxml.html.fromstring(self.driver.page_source)                   
-                    
-                    
-                    #self.pbCache.setMaximum(qItems)                    
-                    """
+                    rootPage = lxml.html.fromstring(self.driver.page_source)
+
+
+                    #self.pbCache.setMaximum(qItems)
+                    #"""
                     tmpDictWithIDs = rootPage.xpath('//*[@id]')
                     qItems = len(tmpDictWithIDs)
                     dbg("cantidad de items: %d" % qItems)
@@ -714,7 +717,7 @@ class pyBOT (QtWidgets.QMainWindow, form):
                         #print("XPAYH-MODE- %s" % el.xpath('./@id')[0])
                         #print("GET-MODE %s" % el.get("id"))
                         #print("ATTRIB-MODE %s" % el.attrib["id"])
-                        tagName, tagID = ( el.tag, el.attrib["id"],)                        
+                        tagName, tagID = (el.tag, el.attrib["id"],)
                         #dbg("item actual: %d - tagName: [%s] - tagID: [%s] - tagValue: [%s]" % (i, tagName, tagID, ''))
                         #""
                         if tagName in self.tagNameWithValueOrText3:
@@ -724,10 +727,10 @@ class pyBOT (QtWidgets.QMainWindow, form):
                                     f.write(os.linesep)
                                 dbg("item actual: %d - tagName: [%s] - tagID: [%s] - tagValue: [%s]" % (i, tagName, tagID, eval("el.%s" % self.tagNameWithValueOrText3[tagName])))
                                 self.elementsWithID[tagID] = [tagName, eval("el.%s" % self.tagNameWithValueOrText3[tagName])] #"""
-                        
-                        
+
+
                     #"""
-                    #"""
+                    """
                     tmpDictWithIDs = self.driver.find_elements_by_xpath("//*[@id]")
                     qItems = len(tmpDictWithIDs)
                     dbg("cantidad de items: %d" % qItems)
@@ -736,7 +739,7 @@ class pyBOT (QtWidgets.QMainWindow, form):
                         #self.pbCache.setValue(i)
                         #self.pbCache.setFormat('LOADING ... %d%s' % (i, "%"))
 
-                        tagName, tagID = ( el.tag_name, el.get_attribute("id"),)                        
+                        tagName, tagID = ( el.tag_name, el.get_attribute("id"),)
 
                         if tagName in self.tagNameWithValueOrText2:
                             if tagName.lower() != self.unsuscriptableTags:
@@ -748,7 +751,7 @@ class pyBOT (QtWidgets.QMainWindow, form):
                     print("end cache")
 
                 except Exception as e:
-                    dbg(str(e))        
+                    dbg(str(e))
                 print("###########################################################")
                 print("same level")
                 print("###########################################################")
