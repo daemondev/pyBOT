@@ -376,3 +376,10 @@ Assuming the script is in /home/user/gssh.sh, you shall then:
 $ export GIT_SSH=/home/user/gssh.sh
 #-------------------------------------------------- END   [latest ssh config] - (05-10-2017 - 15:52:44) }}
 merged success
+#-------------------------------------------------- BEGIN [socat] - (09-10-2017 - 15:37:05) {{
+>socat tcp-listen:8001,reuseaddr,fork tcp:localhost:80
+>socat tcp-listen:8001,reuseaddr,fork tcp:myserver:myport
+
+https://serverfault.com/questions/405822/how-do-i-use-socat-as-a-proxy-server
+>socat TCP-LISTEN:8001,fork SOCKS4A:127.0.0.1:google.com:80,socksport=5678
+#-------------------------------------------------- END   [socat] - (09-10-2017 - 15:37:05) }}

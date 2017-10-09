@@ -4,8 +4,6 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import lxml.html
-from lxml.html import HtmlElement
-from lxml import etree
 
 caps = DesiredCapabilities.INTERNETEXPLORER
 caps['ignoreProtectedModeSettings'] = True
@@ -31,7 +29,6 @@ def hover():
     element = driver.find_element_by_id("HM_Item1_3")
     hov = ActionChains(driver).move_to_element(element)
     hov.perform()
-
 driver.get("http://intranetsisact/sisact/Index.aspx")
 #driver.set_window_rect(0,0,800,600)
 driver.switch_to.frame(driver.find_element_by_name("main"))
@@ -49,10 +46,8 @@ def q():
     driver.close()
     exit
 
+
 headerTable = []
-dict_value = {}
-cells = []
-cell = HtmlElement()
 def printTableRows(attribute, criteria, search = ''):
     root = lxml.html.fromstring(driver.page_source)
     firstIter = True
@@ -63,17 +58,10 @@ def printTableRows(attribute, criteria, search = ''):
             headerTable = row[0]
             print(row[0])
             firstIter = False
-        global cells
-        global cell
         cells = row.xpath('.//td/text()')
-        cell = row.xpath('.//td')
-        print(type(row))
-        print(type(cells))
         print(cells)
-        global dict_value
         dict_value = {'0th': cells[0], '1st': cells[1], '2nd': cells[2], '3rd': cells[3]}
 
-printTableRows("id", "dgLista")
 
 def Enable_Protected_Mode():
     # SECURITY ZONES ARE AS FOLLOWS:

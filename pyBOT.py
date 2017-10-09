@@ -709,7 +709,7 @@ class pyBOT (QtWidgets.QMainWindow, form):
 
 
                     #self.pbCache.setMaximum(qItems)
-                    #"""
+                    """
                     tmpDictWithIDs = rootPage.xpath('//*[@id]')
                     qItems = len(tmpDictWithIDs)
                     dbg("cantidad de items: %d" % qItems)
@@ -725,12 +725,13 @@ class pyBOT (QtWidgets.QMainWindow, form):
                                 with open("debug.txt", "a") as f:
                                     f.write("item actual: %d - tagName: [%s] - tagID: [%s] - tagValue: [%s] \r\n" % (i, tagName, tagID, eval("el.%s" % self.tagNameWithValueOrText3[tagName])))
                                     f.write(os.linesep)
-                                dbg("item actual: %d - tagName: [%s] - tagID: [%s] - tagValue: [%s]" % (i, tagName, tagID, eval("el.%s" % self.tagNameWithValueOrText3[tagName])))
+                                #dbg("item actual: %d - tagName: [%s] - tagID: [%s] - tagValue: [%s]" % (i, tagName, tagID, eval("el.%s" % self.tagNameWithValueOrText3[tagName])))
+                                dbg("item actual: %d - tagName: [%s] - tagID: [%s] - tagValue: [%s]" % (i, tagName, tagID, el.xpath("text()")))
                                 self.elementsWithID[tagID] = [tagName, eval("el.%s" % self.tagNameWithValueOrText3[tagName])] #"""
 
 
                     #"""
-                    """
+                    #"""
                     tmpDictWithIDs = self.driver.find_elements_by_xpath("//*[@id]")
                     qItems = len(tmpDictWithIDs)
                     dbg("cantidad de items: %d" % qItems)
