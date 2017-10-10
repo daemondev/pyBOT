@@ -21,7 +21,8 @@ df.head()
 
 def dataframeToMongo(collection, dataFrame):
     documents = json.loads(dataFrame.T.to_json()).values()
-    collection.insert_many(documents)
+    #collection.insert_many(documents)
+    collection.insert(documents)
 
 def dataframeFromMongo(collection):
     return pd.DataFrame(list(collection.find()))
