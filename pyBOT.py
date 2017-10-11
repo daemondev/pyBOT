@@ -16,6 +16,7 @@ from utils import PandasModel
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import pymongo
+from bson.objectid import ObjectId
 
 from tasks import sisactValidator
 
