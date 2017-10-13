@@ -30,7 +30,6 @@ def dfInsertAndGetFromMongo(collection, dataframe):
     ids = dfToMongo(collection, dataframe)
     return dfGetFromMongoByIds(collection, ids)
 
-
 def dfFromMongo(collection):
     return pd.DataFrame(list(collection.find()))
 
@@ -63,7 +62,7 @@ def dfFromExcelValues(excelFileName, sheetName='Sheet1'):
     data = getSheetValues(excelFileName, sheetName)
     cols = next(data)
     data = list(data)
-    return pd.DataFrame(data,columns=cols)
+    return pd.DataFrame(data, columns=cols)
 
 def dfJoin(*args):
     newDataFrame = pd.core.frame.DataFrame()
