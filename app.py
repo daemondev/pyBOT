@@ -5,9 +5,12 @@ import time
 
 cnx = pymongo.MongoClient()
 db = cnx["selenium"]
+global tbl
 tbl = db["customers"]
 
-driver = webdriver.Firefox()
+global driver
+#driver = webdriver.Firefox()
+driver = webdriver.Chrome()
 driver.get("http://paginasblancas.pe/")
 driver.find_element_by_xpath("//a[@data-target='address']").click()
 driver.find_element_by_name("street").send_keys("carlos izaguirre")
@@ -29,10 +32,12 @@ def q():
     driver.close()
 
 def insertCustomer(c):
+    global tbl
     #tbl.insert_one({'name':c[0], 'address':c[2], 'city': c[4], 'phone': c[8], 'script': c})
     tbl.insert_one({'name':c[0], 'address':c[1], 'city': c[2], 'phone': c[3], 'script': c[4]})
 
 def search():
+    global driver
     items = driver.find_elements_by_css_selector("li.m-results-business")
     time.sleep(2)
     lis = driver.find_elements_by_css_selector("ul.m-results-pagination li")
@@ -51,7 +56,7 @@ def search():
         data = scriptContent[i:f].replace("'","").split(",")
         data = [nombre, direccion, ciudad, telefono, data]
         #data = scriptContent[i:f].replace("'","").encode("iso8859-1","ignore").decode("iso8859-1").split(",")
-
+        global insertCustomer
         insertCustomer(data)
     print("qPages: %d \n" % qPages)
     lastPage = lis[qPages-1]
