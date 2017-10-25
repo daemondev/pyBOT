@@ -10,7 +10,7 @@ SELECT '[' +  STUFF((SELECT
 FROM Products
 FOR XML PATH(''),TYPE).value('.','NVARCHAR(MAX)'),1,1,'') + ']'
 
-#-------------------------------------------------- BEGIN [generic store procedure] - (25-10-2017 - 15:01:51) {{
+--#-------------------------------------------------- BEGIN [generic store procedure] - (25-10-2017 - 15:01:51) {{
 SET ANSI_NULLS ON
 GO
 
@@ -105,4 +105,5 @@ BEGIN
 END
 
 EXEC [dbo].[SerializeJSON] 'SELECT * FROM Products'
-#-------------------------------------------------- END   [generic store procedure] - (25-10-2017 - 15:01:51) }}
+--#-------------------------------------------------- END   [generic store procedure] - (25-10-2017 - 15:01:51) }}
+--https://nyquist212.wordpress.com/2014/02/11/tsql-to-json-2/comment-page-1/
