@@ -5,10 +5,17 @@ import pymongo
 from openpyxl import load_workbook # 2.4.0-a1
 #from itertools import islice
 
-
+#-------------------------------------------------- BEGIN [pymonogo mode] - (22-02-2018 - 14:31:31) {{
 cnx = pymongo.MongoClient()
 db = cnx['pandas']
 coll = db['data']
+#-------------------------------------------------- END   [pymonogo mode] - (22-02-2018 - 14:31:31) }}
+
+#-------------------------------------------------- BEGIN [rethikdb mode] - (22-02-2018 - 14:29:58) {{
+import rethinkdb as r
+cnx = r.connect(host='localhost', port=28015, db='pbScrap')
+cust = r.table('customers')
+#-------------------------------------------------- END   [rethikdb mode] - (22-02-2018 - 14:29:58) }}
 
 #https://stackoverflow.com/questions/16249736/how-to-import-data-from-mongodb-to-pandas
 #https://stackoverflow.com/questions/24963062/a-better-way-to-load-mongodb-data-to-a-dataframe-using-pandas-and-pymongo
@@ -32,6 +39,9 @@ def dfInsertAndGetFromMongo(collection, dataframe):
 
 def dfFromMongo(collection):
     return pd.DataFrame(list(collection.find()))
+
+def dfFromRethinkDB(collection):
+    return pd.DataFrame(list(collection.filter({}).run(cnx)))
 
 def dfFromMongoRecords(collection):
     return pd.DataFrame.from_records(collection.find())
