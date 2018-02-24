@@ -20,6 +20,12 @@ from bson.objectid import ObjectId
 
 from tasks import sisactValidator
 
+#-------------------------------------------------- BEGIN [added RethinkDB support] - (23-10-2017 - 16:19:50) {{
+import rethinkdb as r
+#-------------------------------------------------- END   [added RethinkDB support] - (23-10-2017 - 16:19:50) }}
+
+
+
 debug = True
 #debug = False
 
@@ -166,9 +172,13 @@ class pyBOT (QtWidgets.QMainWindow, form):
         self.currentTabsSize = 571
         self.pendingProcess = False
         self.webElement = {}
-        self.t1 = threading.Thread(target=self.setIDSInCache, args=(self.webElement,))
+        self.t1 = threading.Thread(target=self.watchBotChanges, args=(self.webElement,))
         self.t1.setDaemon(True)
         self.t1.start()
+
+        self.t2 = threading.Thread(target=self.setIDSInCache, args=(self.webElement,))
+        self.t2.setDaemon(True)
+        self.t2.start()
 
         self.pbCache.setValue(0)
         self.pbCache.setAlignment(QtCore.Qt.AlignCenter)
@@ -695,10 +705,33 @@ class pyBOT (QtWidgets.QMainWindow, form):
         while myFUnc():
             print("running")
 
+    def watchBotChanges(self, data):
+        conn = r.connect(host='localhost', port=28015, db='pyBOT')
+        feed = r.table("botActions").changes().run(conn)
+        #union = yield r.union(r.table("chats").changes(), r.table("scripts").changes()).run(conn)
+
+        for change in feed:
+            #change['new_val']['created'] = str(change['new_val']['created'])
+            #print(change['new_val']['action'])
+            #print(change)
+            #print(type(change))
+            #"""
+            if change['new_val']["action"] == "start" and change['new_val']["status"] == 1:
+
+                self.startBOT()
+                print("starting Bot")
+            elif change['new_val']["action"] == "stop" and change['new_val']["status"] == 1:
+                print("shutdown BOT")
+                self.closeBOT()
+            else:
+                print("Nothing action")  #"""
+
+
     def setIDSInCache(self, data):
         #http://infohost.nmt.edu/~shipman/soft/pylxml/web/Element-getchildren.html
         #doc.xpath("//div[@class='name']/parent::*")
         import os
+
         while 1:
             self.setTime()
             while self.pendingProcess:
