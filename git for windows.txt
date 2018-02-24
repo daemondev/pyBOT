@@ -1,0 +1,23 @@
+install git 2.10.0 for windows server 2k3
+install openSSH for windows foe generate pub.key (ssh-keygen, chmod)
+add key to github.com
+C:\Documents and Settings\Administrador\.ssh>chmod 500 *
+
+change name from bin form OpenSSH
+
+git clone git@github.com:daemondev/pyBOT.git
+
+
+#-------------------------------------------------- BEGIN [cyintl-2] - (24-02-2018 - 05:07:59 p.m.) {{
+https://www.dll4free.com/download.php?dll=cygintl-2.dll&m=1937654f5536a1df5ce064bdbacbf59b&action=download
+https://razaoinfo.dl.sourceforge.net/project/sshwindows/OpenSSH%20for%20Windows%20-%20Release/3.8p1-1%2020040709%20Build/setupssh381-20040709.zip
+https://github-production-release-asset-2e65be.s3.amazonaws.com/23216272/7bf8e61e-71be-11e6-9efc-47cf48fcd24f?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20180224%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20180224T202248Z&X-Amz-Expires=300&X-Amz-Signature=55e42148a8becd2e10122f420b36232e45bac9557384993b7f80be63a51e4089&X-Amz-SignedHeaders=host&actor_id=0&response-content-disposition=attachment%3B%20filename%3DMinGit-2.10.0-64-bit.zip&response-content-type=application%2Foctet-stream
+
+/*KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group1-sha1,diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1,diffie-hellman-group-exchange-sha256,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521*/
+
+
+Adding GIT_SSH variable to environment
+
+After you have installed PuTTY package, you’ll need to add a GIT_SSH variable to your environment variables which should point to the plink.exe file (including its entire path). Accepting our defaults from above, this will likely be: GIT_SSH=c:\Program Files\Putty\plink.exe
+#-------------------------------------------------- END   [cyintl-2] - (24-02-2018 - 05:07:59 p.m.) }}
+
