@@ -36,8 +36,8 @@ tbl = db["customers"]
 """
 
 global driver
-driver = webdriver.Firefox()
-#driver = webdriver.Chrome()
+#driver = webdriver.Firefox()
+driver = webdriver.Chrome()
 #driver = webdriver.Opera()
 driver.get("http://www.paginasblancas.com.pe/")
 #driver.get("http://www.paginasblancas.com.pe/persona/s/jorge/callao/p-45")

@@ -10,6 +10,7 @@ git clone git@github.com:daemondev/pyBOT.git
 
 #-------------------------------------------------- BEGIN [cyintl-2] - (24-02-2018 - 05:07:59 p.m.) {{
 https://www.dll4free.com/download.php?dll=cygintl-2.dll&m=1937654f5536a1df5ce064bdbacbf59b&action=download
+https://www.dll4free.com/cygintl-2.dll.html
 https://razaoinfo.dl.sourceforge.net/project/sshwindows/OpenSSH%20for%20Windows%20-%20Release/3.8p1-1%2020040709%20Build/setupssh381-20040709.zip
 https://github-production-release-asset-2e65be.s3.amazonaws.com/23216272/7bf8e61e-71be-11e6-9efc-47cf48fcd24f?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20180224%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20180224T202248Z&X-Amz-Expires=300&X-Amz-Signature=55e42148a8becd2e10122f420b36232e45bac9557384993b7f80be63a51e4089&X-Amz-SignedHeaders=host&actor_id=0&response-content-disposition=attachment%3B%20filename%3DMinGit-2.10.0-64-bit.zip&response-content-type=application%2Foctet-stream
 
@@ -20,4 +21,7 @@ Adding GIT_SSH variable to environment
 
 After you have installed PuTTY package, you’ll need to add a GIT_SSH variable to your environment variables which should point to the plink.exe file (including its entire path). Accepting our defaults from above, this will likely be: GIT_SSH=c:\Program Files\Putty\plink.exe
 #-------------------------------------------------- END   [cyintl-2] - (24-02-2018 - 05:07:59 p.m.) }}
+https://pypi.anaconda.org/carlkl/simple/mingwpy/0.1.0b3/mingwpy-0.1.0b3-cp34-none-win_amd64.whl (82.4MB)
 
+
+Microsoft Visual C++ 10.0 is required (Unable to find vcvarsall.bat).
