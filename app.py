@@ -6,7 +6,7 @@ import os
 
 import rethinkdb as r
 
-cnx = r.connect(host='localhost', port=28015, db='pbScrap')
+cnx = r.connect(host='192.168.1.6', port=28015, db='pbScrap')
 #cust = r.table('customers')
 #cust = r.table('customers_c_jose')
 catch = r.table('catch')
@@ -19,9 +19,13 @@ except Exception as e:
     pass
 
 def insert(data):
+    global cust
+    global cnx
     cust.insert(data).run(cnx)
 
 def registerError(data):
+    global cust
+    global cnx
     catch.insert(data).run(cnx)
 
 """
@@ -40,7 +44,7 @@ driver.get("http://www.paginasblancas.com.pe/")
 #driver.get("http://www.paginasblancas.com.pe/persona/s/rosa/callao/p-28")
 
 
-name = 'julio'
+name = 'carlos'
 nLocality = u'callao'
 bot = {}
 
@@ -56,6 +60,9 @@ bot.update(dict(
 def init_db():
     #conn = r.connect(host='localhost', port=28015)
     try:
+        global cnx
+        global bot
+        global r
         #r.db_create(bot['DB_NAME']).run(conn)
         #r.db(bot['DB_NAME']).table_create(bot['TBL_NAME']).run(conn)
         r.db(bot['DB_NAME']).table_create(bot['TBL_NAME']).run(cnx)
@@ -137,6 +144,7 @@ def q():
 def insertCustomer(c):
     global tbl
     global totalQ
+    global insert
     #tbl.insert_one({'name':c[0], 'address':c[2], 'city': c[4], 'phone': c[8], 'script': c})
     #tbl.insert_one({'name':c[0], 'address':c[1], 'city': c[2], 'phone': c[3], 'script': c[4]})
     #insert({'name':c[0], 'address':c[1], 'city': c[2], 'phone': c[3], 'script': c[4], 'epoch': c[5], 'ins': c[6], 'url': c[7], 'search': c[8], 'nLocality': c[9], 'pagePosition': c[10], 'itemIndex': c[11], 'totalQ': totalQ})
@@ -148,11 +156,14 @@ def search():
     global nLocality
     global itemIndex
     global pageNumber
+    global IMAGES_DIR
+    global html
     pageNumber += 1
     url = driver.current_url
     date = time.strftime("%Y-%m-%d")
     imageName = "{}-{}.{}".format(date, url[url.index('/',7)+1:].replace('/','-'), '.png')
-    imagePath = os.path.join(IMAGES_DIR,imageName)
+    #imagePath = os.path.join(IMAGES_DIR,imageName)
+    imagePath = "{}/{}".format(IMAGES_DIR,imageName)
     driver.get_screenshot_as_file(imagePath)
     pos = 0
     try:
