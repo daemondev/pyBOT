@@ -211,8 +211,11 @@ def search():
         global registerError
         data = {'error': str(e), 'inURL': url, 'inItem': itemIndex, 'inPosition': pos, 'inPageNumber': pageNumber, 'image': 'under ...'}
         driver.refresh()
-        search()
+        global search
+        global registerError
         registerError(data)
+        search()
+
     global insertCustomer
     insertCustomer(records)
     print("qPages: %d \n" % qPages)
